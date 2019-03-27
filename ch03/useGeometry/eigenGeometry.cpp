@@ -46,7 +46,10 @@ int main()
     // Quaternion
     // from AngleAxis
     Eigen::Quaterniond q = Eigen::Quaterniond(rotation_vector);
-    cout << "quaternions: \n" << q.coeffs().transpose() << endl;  // notice, this order is (x, y, z, w) - annoying
+    cout << "quaternions: \n" << q.coeffs().transpose() << endl;
+    // notice, this order is (x, y, z, w) with imaginary coefficients first
+    // while in constructing Quaternion from coefficients the required order is (w, x, y, z)
+    // based on Eigen doc; but internally the stored coefficients are in oder of (x, y, z, w) - annoying
     // from rotation matrix
     q = Eigen::Quaterniond(rotation_matrix);
     cout << "quaternions: \n" << q.coeffs().transpose() << endl;
